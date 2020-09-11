@@ -8,18 +8,17 @@ namespace BookViewer.ViewModels
 {
     public class TextPageViewModel : BindableBase
     {
-        private readonly IBook _book;
         public ReadOnlyReactiveProperty<IPage> CurrentPage { get; }
         public ReactiveCommand GoNextCommand { get; }
         public ReactiveCommand GoBackCommand { get; }
         public TextPageViewModel(IBook book)
         {
-            _book = book;
-            CurrentPage = _book.ObserveProperty(b => b.CurrentPage).ToReadOnlyReactiveProperty();
-            GoNextCommand = _book.ObserveProperty(b => b.HasNext).ToReactiveCommand();
-            GoNextCommand.Subscribe(_ => _book.GoNext());
-            GoBackCommand = _book.ObserveProperty(b => b.HasPrevious).ToReactiveCommand();
-            GoBackCommand.Subscribe(_ => _book.GoBack());
+            var book1 = book;
+            CurrentPage = book1.ObserveProperty(b => b.CurrentPage).ToReadOnlyReactiveProperty();
+            GoNextCommand = book1.ObserveProperty(b => b.HasNext).ToReactiveCommand();
+            GoNextCommand.Subscribe(_ => book1.GoNext());
+            GoBackCommand = book1.ObserveProperty(b => b.HasPrevious).ToReactiveCommand();
+            GoBackCommand.Subscribe(_ => book1.GoBack());
         }
     }
 }

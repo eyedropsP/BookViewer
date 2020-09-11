@@ -1,6 +1,4 @@
-﻿using Prism.Mvvm;
-
-namespace BookViewer.Models
+﻿namespace BookViewer.Models
 {
     public class Page : IPage
     {

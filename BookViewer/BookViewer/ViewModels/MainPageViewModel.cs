@@ -7,12 +7,10 @@ namespace BookViewer.ViewModels
 {
     public class MainPageViewModel : BindableBase
     {
-        private readonly IBook _book;
         public ICommand OpenCommand { get; }
         public MainPageViewModel(IBook book)
         {
-            _book = book;
-            OpenCommand = new DelegateCommand(() => _book.Open());
+            OpenCommand = new DelegateCommand(() => book.Open());
         }
     }
 }
